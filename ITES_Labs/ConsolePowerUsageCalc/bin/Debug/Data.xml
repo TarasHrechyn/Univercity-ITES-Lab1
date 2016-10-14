@@ -1,0 +1,17 @@
+<data>
+  <!-- Опис елементів списку -->
+	<items>
+		<item Vnom="220" Snom="11.2"/>
+		<item Vnom="380" Snom="23.9"/>
+    <!-- приклад пропущеного значення -->
+    		<item Snom="60"/>
+		<item Snom="15.6" CosFi="30"/>
+		<item Vnom="380" Snom="20"/>
+		<item Vnom="380" Snom="23.9"/>
+	</items>
+  
+  <lines>
+    <line v_nom="220" s_nom="11.2"/>
+    <line v_nom="380" s_nom="23.9"/>
+  </lines>
+</data>
