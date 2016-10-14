@@ -1,0 +1,16 @@
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\bin\Debug\WpfPowerCalcApp.exe.config
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.csprojResolveAssemblyReference.cache
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\MainWindow.g.cs
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\App.g.cs
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp_MarkupCompile.cache
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp_MarkupCompile.lref
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\bin\Debug\WpfPowerCalcApp.exe
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\bin\Debug\WpfPowerCalcApp.pdb
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\MainWindow.baml
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.g.resources
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.Properties.Resources.resources
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.csproj.GenerateResource.Cache
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.exe
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.pdb
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\ItemAddDialog.g.cs
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\WpfPowerCalcApp\obj\Debug\ItemAddDialog.baml
