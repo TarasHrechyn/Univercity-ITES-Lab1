@@ -22,7 +22,7 @@
                 </MenuItem>
                 <MenuItem Header="Item">
                     <MenuItem x:Name="menuItemAddLoad" Header="Add Load" HorizontalAlignment="Left" Width="139.6"/>
-                    <MenuItem x:Name="menuItemAddCapacitor" Header="MenuItem" HorizontalAlignment="Left" Width="139.6"/>
+                    <MenuItem x:Name="menuItemAddCapacitor" Header="Add Capacitor" HorizontalAlignment="Left" Width="139.6"/>
                 </MenuItem>
             </Menu>
         </Menu>

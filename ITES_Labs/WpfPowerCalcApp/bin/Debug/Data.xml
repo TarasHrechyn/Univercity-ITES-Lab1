@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <PowerStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
-    <PowerItem xsi:type="PowerLoad" Pnom="0" Qnom="0" Vnom="220" />
-    <PowerItem xsi:type="PowerLoad" Pnom="0" Qnom="0" Vnom="220" />
-    <PowerItem xsi:type="PowerCapacitor" Pnom="0" Qnom="1.3" Vnom="220" />
+    <PowerItem xsi:type="PowerLoad" Pnom="1.7" Qnom="0" Vnom="220" />
+    <PowerItem xsi:type="PowerCapacitor" Pnom="0" Qnom="9.9" Vnom="220" />
   </Items>
 </PowerStation>
