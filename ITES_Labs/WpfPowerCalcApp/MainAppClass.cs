@@ -8,21 +8,23 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
+using System.Data;
+
 namespace ConsolePowerUsageCalcVisual
 {
     [Serializable]
     public class PowerStation
     {
         // список обєктів
-        [XmlArray]
         public List<PowerItem> Items = new List<PowerItem>();
-       
+        
         /// <summary>
         /// Конструктор
         /// </summary>
         public PowerStation()
         {            
         }
+
         /// <summary>
         /// ввід з файла XML
         /// </summary>
@@ -40,8 +42,6 @@ namespace ConsolePowerUsageCalcVisual
             catch 
             {
                 return new PowerStation();
-//                Console.WriteLine("Invalid document content  {0}: {1}", aFileName, e.Message);
-//                Console.ReadKey();
             }
 
         }
@@ -59,13 +59,14 @@ namespace ConsolePowerUsageCalcVisual
         }
 
         /// <summary>
-        /// ввивід результату
+        /// повернення результату
         /// </summary>
-        public Complex GetSum()
+        public Complex GetSum(List<PowerItem> SourceList = null)
         {
             Complex Ssum = Complex.Zero;
+            List<PowerItem> sourceList = (SourceList == null) ? Items : SourceList;
 
-            foreach (PowerItem item in Items)
+            foreach (PowerItem item in sourceList)
             {
                 Ssum += item.Snom;
             }
@@ -78,11 +79,16 @@ namespace ConsolePowerUsageCalcVisual
         /// <param name="aVoltage"> параметри запиту </param>
         internal List<PowerItem> ItemsByVoltage(double aVoltage)
         {
-            Console.WriteLine("Items at voltage {0}", aVoltage);
-            var subItems = from item in Items
-                           where ((item.Vnom == aVoltage) || (aVoltage == 0.0))
-                           select item;
-            return new List<PowerItem>(subItems);
+            if (aVoltage == 0.0)
+            {
+                return Items;
+            } else
+            {
+                var subItems = from item in Items
+                               where (item.Vnom == aVoltage)
+                               select item;
+                return new List<PowerItem>(subItems);
+            }
         }
     }
 }

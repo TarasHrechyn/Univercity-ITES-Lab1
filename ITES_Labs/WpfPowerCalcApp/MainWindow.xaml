@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPowerCalcApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="672.4">
-    <Grid Margin="0">
+        Title="MainWindow" Height="514.8" Width="672.4">
+    <Grid Margin="0,0,-0.4,42.8">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="273*"/>
@@ -17,17 +17,17 @@
                     <MenuItem x:Name="menuFileNew" Header="New..." HorizontalAlignment="Left" Width="139.6" Click="menuFileNew_Click"/>
                     <MenuItem x:Name="menuFileOpen" Header="Open" HorizontalAlignment="Left" Width="139.6" Click="menuFileOpen_Click"/>
                     <MenuItem x:Name="menuFileSave"  Header="Save"  HorizontalAlignment="Left" Width="139.6" Click="menuFileSave_Click"/>
-                    <Separator HorizontalAlignment="Left" Height="3" Width="30"/>
+                    <Separator HorizontalAlignment="Left" Height="4" Width="30"/>
                     <MenuItem x:Name="menuExit" Header="Exit" HorizontalAlignment="Left" Width="140" Click="menuExit_Click" Margin="0,0,-0.4,0"/>
                 </MenuItem>
                 <MenuItem Header="Item">
-                    <MenuItem x:Name="menuItemAddLoad" Header="Add Load" HorizontalAlignment="Left" Width="139.6"/>
-                    <MenuItem x:Name="menuItemAddCapacitor" Header="Add Capacitor" HorizontalAlignment="Left" Width="139.6"/>
+                    <MenuItem x:Name="menuItemAddLoad" Header="Add Load" HorizontalAlignment="Left" Click="itemAddLoad_Click"/>
+                    <MenuItem x:Name="menuItemAddCapacitor" Header="Add Capacitor" HorizontalAlignment="Left" Click="itemAddCapacitor_Click"/>
                 </MenuItem>
             </Menu>
         </Menu>
         <Button x:Name="itemAddLoad" Content="Add Load" HorizontalAlignment="Left" Height="30" Margin="35,5,0,0" VerticalAlignment="Top" Width="85" Click="itemAddLoad_Click" Grid.Row="1"/>
-        <RichTextBox x:Name="textFilteredItems" Height="150" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,5,19.6,0" Grid.Row="1" VerticalAlignment="Top" Width="390" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" TextChanged="textFilteredItems_TextChanged">
+        <RichTextBox x:Name="textFilteredItems" Height="150" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,5,19.6,0" Grid.Row="1" VerticalAlignment="Top" Width="468" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" TextChanged="textFilteredItems_TextChanged">
             <RichTextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -42,8 +42,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Label x:Name="labelSumTotal" Content="Label" HorizontalAlignment="Right" Margin="0,160,19.6,0" Grid.Row="1" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="labelSumTotal" Content="Summary Label" HorizontalAlignment="Right" Margin="0,160,19.6,0" Grid.Row="1" VerticalAlignment="Top" Width="135"/>
         <Button x:Name="itemAddCapacitor" Content="Add Capacitor" HorizontalAlignment="Left" Height="30" Margin="35,40,0,0" VerticalAlignment="Top" Width="85" Grid.Row="1" Click="itemAddCapacitor_Click"/>
-
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="185,200.2,0,0" Grid.Row="1" VerticalAlignment="Top" Height="166" Width="463"/>
     </Grid>
 </Window>

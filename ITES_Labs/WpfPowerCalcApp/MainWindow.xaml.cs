@@ -88,6 +88,7 @@ namespace WpfPowerCalcApp
 
         private void textFilteredItems_TextChanged(object sender, TextChangedEventArgs e)
         {
+
         }
 
         private void menuFileNew_Click(object sender, RoutedEventArgs e)
