@@ -26,7 +26,7 @@
         <Button x:Name="itemAddLoad" Content="Add Load" HorizontalAlignment="Left" Height="30" Margin="35,5,0,0" VerticalAlignment="Top" Width="85" Click="itemAddLoad_Click" Grid.Row="1"/>
         <Label x:Name="labelSumTotal" Content="Summary Label" HorizontalAlignment="Right" Margin="0,340.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135"/>
         <Button x:Name="itemAddCapacitor" Content="Add Capacitor" HorizontalAlignment="Left" Height="30" Margin="35,40,0,0" VerticalAlignment="Top" Width="85" Grid.Row="1" Click="itemAddCapacitor_Click"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="335" Margin="170,0.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="470" SelectionChanged="listView_SelectionChanged">
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="335" Margin="170,0.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="470" >
         </ListView>
     </Grid>
 </Window>

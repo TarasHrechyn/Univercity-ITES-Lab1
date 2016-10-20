@@ -49,29 +49,34 @@ namespace PowerUsageCalc
         /// <summary>
         /// повернення результату
         /// </summary>
-        public Complex GetSum()
+        public Complex GetSum(List<PowerItem> items )
         {
+            Complex sum = new Complex(0, 0);
+            foreach (PowerItem item in items)
+            {
+                sum += item.Snom;
+            }
 
-            return new Complex(0, 0);
+            return sum;
         }
 
         /// Приклад роботи з базою даних
 
-        private SqlConnection Connection;
+        private SqlConnection _connection;
 
         private void CheckConnected()
         {
-            if (Connection == null)
+            if (_connection == null)
             {
-                Connection = new SqlConnection();
+                _connection = new SqlConnection();
                 try
                 {
-                    Connection.ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=PowerGridData;Integrated Security=True";
-                    Connection.Open();
+                    _connection.ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=PowerGridData;Integrated Security=True";
+                    _connection.Open();
                 }
                 catch
                 {
-                    Connection = null;
+                    _connection = null;
                     throw;
                 }
             }
@@ -90,7 +95,7 @@ namespace PowerUsageCalc
                 "('{0}', '{1}', '{2}', '{3}', '{4}')", 
                 Item.Name, Item.Unom, Item.Pnom, Item.Qnom, Item.GetType().FullName);
                 // Execute using our connection.   
-            using (SqlCommand cmd = new SqlCommand(sql, this.Connection))
+            using (SqlCommand cmd = new SqlCommand(sql, this._connection))
             {
                 cmd.ExecuteNonQuery();
             }
@@ -105,7 +110,7 @@ namespace PowerUsageCalc
             List<PowerItem> list = new List<PowerItem>();
             // Prep command object.   
             string sql = string.Format("Select * From PowerItems where Unom={0}", Voltage);
-            using (SqlCommand cmd = new SqlCommand(sql, Connection))
+            using (SqlCommand cmd = new SqlCommand(sql, _connection))
             {
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())

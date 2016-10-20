@@ -44,6 +44,7 @@ namespace WpfPowerCalcApp
             // Add columns
             var gridView = new GridView();
             this.listView.View = gridView;
+            
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "Id",
@@ -94,7 +95,7 @@ namespace WpfPowerCalcApp
             }
 
             // оновлення суми
-            double sum = StationModel.GetSum().Magnitude;
+            double sum = StationModel.GetSum(items).Magnitude;
             labelSumTotal.Content = "S = " + sum.ToString("#.0");
         }
 
@@ -139,25 +140,10 @@ namespace WpfPowerCalcApp
             }
         }
 
-        private void textFilteredItems_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void menuFileNew_Click(object sender, RoutedEventArgs e)
         {
             stationModel = new PowerStation();
             StationModelChanged();
-        }
-
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
         }
     }
 }
