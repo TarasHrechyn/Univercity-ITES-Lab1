@@ -20,6 +20,8 @@
             <ComboBoxItem Content="220" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem Content="380" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
+        <TextBox x:Name="editorName" HorizontalAlignment="Left" Height="23" Margin="77,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" Grid.ColumnSpan="2"/>
+        <Label x:Name="label_Copy1" Content="Назва" HorizontalAlignment="Left" Margin="34,69,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

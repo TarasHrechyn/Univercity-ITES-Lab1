@@ -3,89 +3,87 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml;
 using System.Numerics;
-using System.Xml.Serialization;
 
 // простір імен проекту
-namespace ConsolePowerUsageCalcVisual
+namespace PowerUsageCalc
 {
-    [XmlInclude(typeof(PowerItem))]
-    [XmlInclude(typeof(PowerLoad))]
-    [XmlInclude(typeof(PowerCapacitor))]
-
     // Опис Класу
-    [Serializable]
     public class PowerItem
     {
-        // приватне поле
-        private double _Vnom;
-
         // Конструктор 
         public PowerItem()
         {   
-            Vnom = 220;
+            Unom = 220;
         }
 
-        // публічне поле
+        // приватне поле
+        private int _Vnom;
+
+        // службові поля ідентифікації
+        public int Id
+        {
+            get; set;
+        }
+        public virtual string Name
+        {
+            get; set;
+        }
+
+        // публічні поля
         public Complex Snom
         {
             get { return new Complex(Pnom, Qnom); }
         }
-        [XmlAttribute]
         public double Pnom
         {
-            get;  set;
+            get; set;
         }
-
-        [XmlAttribute]
         public double Qnom
         {
             get; set;
         }
 
         // властивість на читання і запис
-        [XmlAttribute]
-        public double Vnom
+        public int Unom
         {
-            get { return (_Vnom > 0.0 ? _Vnom : 220); }
+            get { return (_Vnom > 0 ? _Vnom : 220); }
             set { _Vnom = value; }
         }
         // розрахункова властивість лише для читання
         public double Inom {
-            get { return Snom.Magnitude / Vnom / Math.Sqrt(3); }
+            get { return (Snom.Magnitude / Unom / Math.Sqrt(3)); }
+        }
+        public string InomDisp
+        {
+            get { return Inom.ToString("F3"); }
         }
 
         // методи
         public override string ToString()
         {
-            return string.Format("V = {0} V, S = {1:F1} VA, I = {2:F3} A", Vnom, Snom, Inom);
+            return string.Format("{0} V = {1} V, S = {2:F1} VA, I = {3:F3} A", Name, Unom, Snom, Inom);
         }        
     }
 
-    [Serializable]
     public class PowerCapacitor : PowerItem
     {
-        public PowerCapacitor():
-            base()
+        public override string Name
         {
-        }
-        public override string ToString()
-        {
-            return "Capacitor - " + base.ToString();
+            get {
+                return (base.Name == "")?"Capacitor":base.Name;
+            }
         }
     }
 
-    [Serializable]
     public class PowerLoad : PowerItem
     {
-        public PowerLoad():
-            base()
+        public override string Name
         {
-        }
-        public override string ToString()
-        {
-            return "Load - " + base.ToString();
+            get
+            {
+                return (base.Name == "") ? "Load" : base.Name;
+            }
         }
     }
 }

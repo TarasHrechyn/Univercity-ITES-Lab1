@@ -30,3 +30,7 @@ C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\obj\Debug\I
 C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.g.resources
 C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.Properties.Resources.resources
 C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\obj\Debug\WpfPowerCalcApp.csproj.GenerateResource.Cache
+C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\bin\Debug\EntityFramework.dll
+C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\bin\Debug\EntityFramework.xml
+C:\Users\Taras\Documents\GitHub\University\ITES_Labs\WpfPowerCalcApp\bin\Debug\EntityFramework.SqlServer.xml

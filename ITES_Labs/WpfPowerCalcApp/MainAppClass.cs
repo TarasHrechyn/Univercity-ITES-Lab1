@@ -9,15 +9,36 @@ using System.Xml;
 using System.Xml.Serialization;
 
 using System.Data;
+using System.Data.SqlClient;
 
-namespace ConsolePowerUsageCalcVisual
+namespace PowerUsageCalc
 {
     [Serializable]
     public class PowerStation
     {
-        // список обєктів
-        public List<PowerItem> Items = new List<PowerItem>();
-        
+
+        private double GetAsDBFloat(object databaseValue, double defaultValue = 0.0)
+        {
+            if (databaseValue is DBNull || databaseValue == null)
+                return defaultValue;
+            else
+                return ((double?)(databaseValue)).GetValueOrDefault(defaultValue);
+        }
+        private int GetAsDBInt(object databaseValue, int defaultValue = 0)
+        {
+            if (databaseValue is DBNull || databaseValue == null)
+                return defaultValue;
+            else
+                return ((int?)(databaseValue)).GetValueOrDefault(defaultValue);
+        }
+        private string GetAsDBString(object databaseValue, string defaultValue = "")
+        {
+            if (databaseValue is DBNull || databaseValue == null)
+                return defaultValue;
+            else
+                return ((string)(databaseValue));
+        }
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -26,69 +47,85 @@ namespace ConsolePowerUsageCalcVisual
         }
 
         /// <summary>
-        /// ввід з файла XML
-        /// </summary>
-        public static PowerStation LoadFromXML(string aFileName)
-        {
-            XmlSerializer xml = new XmlSerializer(typeof(PowerStation));
-            try
-            {
-                using (Stream stream = new FileStream(aFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    return (PowerStation)xml.Deserialize(stream);
-                }
-            }
-            // опрацювання помилок
-            catch 
-            {
-                return new PowerStation();
-            }
-
-        }
-
-        /// <summary>
-        /// ввід з файла XML
-        /// </summary>
-        public void SaveToXML(string aFileName)
-        {
-            XmlSerializer xml = new XmlSerializer(typeof(PowerStation));
-            using (Stream stream = new FileStream(aFileName, FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                xml.Serialize(stream, this);
-            } 
-        }
-
-        /// <summary>
         /// повернення результату
         /// </summary>
-        public Complex GetSum(List<PowerItem> SourceList = null)
+        public Complex GetSum()
         {
-            Complex Ssum = Complex.Zero;
-            List<PowerItem> sourceList = (SourceList == null) ? Items : SourceList;
 
-            foreach (PowerItem item in sourceList)
-            {
-                Ssum += item.Snom;
-            }
-            return Ssum;
+            return new Complex(0, 0);
         }
 
+        /// Приклад роботи з базою даних
+
+        private SqlConnection Connection;
+
+        private void CheckConnected()
+        {
+            if (Connection == null)
+            {
+                Connection = new SqlConnection();
+                try
+                {
+                    Connection.ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=PowerGridData;Integrated Security=True";
+                    Connection.Open();
+                }
+                catch
+                {
+                    Connection = null;
+                    throw;
+                }
+            }
+        }
+        /// <summary>
+        /// Добавлення Запису в БД
+        /// </summary>
+        /// <param name="Item"></param>
+        public void AddItem(PowerItem Item)
+        {
+            // відкрити зєднання
+            CheckConnected();
+            // створити запит   
+            string sql = string.Format("Insert Into PowerItems" +     
+                "(Name, Unom, Pnom, Qnom, Type) Values" +
+                "('{0}', '{1}', '{2}', '{3}', '{4}')", 
+                Item.Name, Item.Unom, Item.Pnom, Item.Qnom, Item.GetType().FullName);
+                // Execute using our connection.   
+            using (SqlCommand cmd = new SqlCommand(sql, this.Connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
         /// <summary>
         /// Приклад Запиту
         /// </summary>
-        /// <param name="aVoltage"> параметри запиту </param>
-        internal List<PowerItem> ItemsByVoltage(double aVoltage)
+        /// <param name="Voltage"> параметри запиту </param>
+        public List<PowerItem> GetItemsByVoltage(int Voltage)
         {
-            if (aVoltage == 0.0)
+            CheckConnected();
+            List<PowerItem> list = new List<PowerItem>();
+            // Prep command object.   
+            string sql = string.Format("Select * From PowerItems where Unom={0}", Voltage);
+            using (SqlCommand cmd = new SqlCommand(sql, Connection))
             {
-                return Items;
-            } else
-            {
-                var subItems = from item in Items
-                               where (item.Vnom == aVoltage)
-                               select item;
-                return new List<PowerItem>(subItems);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Type type = Type.GetType(GetAsDBString(dr["Type"]));
+                    PowerItem item;
+                    if (type == null)
+                        item = new PowerItem();
+                    else 
+                        item = (PowerItem)Activator.CreateInstance(type);
+                    item.Id = GetAsDBInt(dr["Id"]);
+                    item.Name = GetAsDBString(dr["Name"]);
+                    item.Unom = GetAsDBInt(dr["Unom"]);
+                    item.Pnom = GetAsDBFloat(dr["Pnom"]);
+                    item.Qnom = GetAsDBFloat(dr["Qnom"]);
+                    list.Add(item);
+                }
+                dr.Close();
             }
+            return list;
         }
     }
 }

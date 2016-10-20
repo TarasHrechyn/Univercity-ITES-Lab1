@@ -19,12 +19,16 @@ namespace WpfPowerCalcApp
     /// </summary>
     public partial class NewItemAddDlg : Window
     {
-        public double Unom
+        public string LoadName
         {
-            get { return Convert.ToDouble(editorUnom.Text); }
+            get { return editorName.Text; }
+        }
+        public int LoadUnom
+        {
+            get { return Convert.ToInt32(editorUnom.Text); }
         }
 
-        public double Snom
+        public double LoadSnom
         {
             get
             {

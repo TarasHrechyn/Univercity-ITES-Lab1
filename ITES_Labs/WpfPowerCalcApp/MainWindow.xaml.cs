@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ConsolePowerUsageCalcVisual;
+using PowerUsageCalc;
 
 namespace WpfPowerCalcApp
 {
@@ -22,7 +22,6 @@ namespace WpfPowerCalcApp
     public partial class MainWindow : Window
     {
         //        private PowerStation stationModel = new PowerStation();
-
         private PowerStation stationModel = new PowerStation();
 
         internal PowerStation StationModel
@@ -36,18 +35,65 @@ namespace WpfPowerCalcApp
         public MainWindow()
         {
             InitializeComponent();
+            InitlizeListView();
             StationModelChanged();
+
+        }
+        void InitlizeListView()
+        {
+            // Add columns
+            var gridView = new GridView();
+            this.listView.View = gridView;
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Id",
+                DisplayMemberBinding = new Binding("Id")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Name",
+                DisplayMemberBinding = new Binding("Name"),
+                
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Unom",
+                DisplayMemberBinding = new Binding("Unom")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "P",
+                DisplayMemberBinding = new Binding("Pnom")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "Q",
+                DisplayMemberBinding = new Binding("Qnom")
+            });
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "I",
+                DisplayMemberBinding = new Binding("InomDisp")
+                {
+                    
+                },
+                HeaderStringFormat = ""
+            });
         }
 
         void StationModelChanged()
         {
-            List<PowerItem> items = StationModel.ItemsByVoltage(0);
-            textFilteredItems.Document.Blocks.Clear();
-            
+            // отримання фільтрованого списку
+            List<PowerItem> items = StationModel.GetItemsByVoltage(220);
+
+            // заповнення візеального списку
+            listView.Items.Clear();
             foreach (PowerItem item in items)
             {
-                textFilteredItems.AppendText("\n" + item.ToString());
+                listView.Items.Add(item);
             }
+
+            // оновлення суми
             double sum = StationModel.GetSum().Magnitude;
             labelSumTotal.Content = "S = " + sum.ToString("#.0");
         }
@@ -63,13 +109,16 @@ namespace WpfPowerCalcApp
 
         private void itemAddLoad_Click(object sender, RoutedEventArgs e)
         {
-
             NewItemAddDlg dlg = new NewItemAddDlg();
             dlg.Title = "Add Load";
-            Nullable<bool> dialogResult = dlg.ShowDialog();
+            bool? dialogResult = dlg.ShowDialog();
             if (dialogResult.Value)
             {
-                StationModel.Items.Add(new PowerLoad() { Vnom = dlg.Unom, Pnom = dlg.Snom });
+                StationModel.AddItem(new PowerLoad() {
+                    Name = dlg.LoadName,
+                    Unom = dlg.LoadUnom,
+                    Pnom = dlg.LoadSnom
+                });
                 StationModelChanged();
             }
         }
@@ -78,10 +127,14 @@ namespace WpfPowerCalcApp
         {
             NewItemAddDlg dlg = new NewItemAddDlg();
             dlg.Title = "Add Capacitor";
-            Nullable<bool> dialogResult = dlg.ShowDialog();
+            bool? dialogResult = dlg.ShowDialog();
             if (dialogResult.Value)
             {
-                StationModel.Items.Add(new PowerCapacitor() { Vnom = dlg.Unom, Qnom = dlg.Snom });
+                StationModel.AddItem(new PowerCapacitor() {
+                    Name = dlg.LoadName,
+                    Unom = dlg.LoadUnom,
+                    Pnom = dlg.LoadSnom
+                });
                 StationModelChanged();
             }
         }
@@ -97,15 +150,14 @@ namespace WpfPowerCalcApp
             StationModelChanged();
         }
 
-        private void menuFileOpen_Click(object sender, RoutedEventArgs e)
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            stationModel = PowerStation.LoadFromXML("Data.xml");
-            StationModelChanged();
+            
         }
 
-        private void menuFileSave_Click(object sender, RoutedEventArgs e)
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            stationModel.SaveToXML("Data.xml");
+            
         }
     }
 }
