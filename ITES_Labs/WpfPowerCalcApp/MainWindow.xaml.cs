@@ -32,13 +32,27 @@ namespace WpfPowerCalcApp
             }            
         }
 
-        public MainWindow()
+        void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            InitializeComponent();
-            InitlizeListView();
-            StationModelChanged();
-
+            string errorMessage = string.Format("Помилка: {0}", e.Exception.Message);
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
         }
+
+        public MainWindow(): base()
+        {
+            this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
+
+            InitializeComponent();
+            InitlizeListView();            
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            base.OnStateChanged(e);
+            StationModelChanged();
+        }
+
         void InitlizeListView()
         {
             // Add columns
@@ -84,11 +98,12 @@ namespace WpfPowerCalcApp
 
         void StationModelChanged()
         {
+            // заповнення візеального списку
+            listView.Items.Clear();
+
             // отримання фільтрованого списку
             List<PowerItem> items = StationModel.GetItemsByVoltage(220);
 
-            // заповнення візеального списку
-            listView.Items.Clear();
             foreach (PowerItem item in items)
             {
                 listView.Items.Add(item);

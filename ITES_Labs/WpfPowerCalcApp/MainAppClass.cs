@@ -77,6 +77,7 @@ namespace PowerUsageCalc
                 catch
                 {
                     _connection = null;
+                    
                     throw;
                 }
             }
