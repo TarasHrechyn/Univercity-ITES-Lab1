@@ -1,0 +1,12 @@
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.exe.config
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.exe
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.pdb
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.csprojResolveAssemblyReference.cache
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.exe
+C:\Users\Taras\Google Drive\University-Private\Kurs-Drafts\Kurs_ITES\8_Samples\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.pdb
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.exe.config
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.exe
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.pdb
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.exe
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\bin\Debug\ConsolePowerUsageCalc.pdb
+C:\Users\Taras\Documents\GitRepo\ITES_Labs\Lab1\ConsolePowerUsageCalc\ConsolePowerUsageCalc\obj\Debug\ConsolePowerUsageCalc.csprojResolveAssemblyReference.cache
